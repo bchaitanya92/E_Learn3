@@ -18,13 +18,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from courses.views import MITCourseViewSet
+from courses.views import MITCourseViewSet, QuestViewSet, CapstoneProjectViewSet
 
 router = DefaultRouter()
-router.register(r'courses', MITCourseViewSet)
+router.register(r"courses", MITCourseViewSet)
+router.register(r"quests", QuestViewSet, basename="quest")
+router.register(r"capstone", CapstoneProjectViewSet, basename="capstone")
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('api/', include(router.urls)),  # This activates our API
+    path("admin/", admin.site.urls),
+    path("api/", include(router.urls)),
 ]
 
